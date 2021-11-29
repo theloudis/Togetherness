@@ -1,2 +1,2 @@
 # Togetherness
-Replication package for Togetherness in the Household, forthcoming at AEJ-Microeconomics
+Replication package for Togetherness in the Household, conditionally accepted at AEJ-Microeconomics
