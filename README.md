@@ -1,11 +1,11 @@
 # Togetherness
 This repository contains the code that allows the replication of my paper **Togetherness in the Household**, accepted at _AEJ-Micro_ conditionally on data replication. The paper is coauthored with [Sam Cosaert](https://www.sites.google.com/site/samlcosaert/home) and Bertrand Verheyden.
 
-**Togetherness in the Household** uses time use and consumption data in the [Dutch Longitudinal Internet studies for the Social Sciences](https://www.lissdata.nl/Home) (LISS) to:
+**Togetherness in the Household** develops a collective household model with private and joint uses of time. In this model, the _timing_ of a family member's market work matters for how much time the members can spend jointly and together (what we call _togetherness_). The paper uses time use and consumption data in the [Dutch Longitudinal Internet studies for the Social Sciences](https://www.lissdata.nl/Home) (LISS) to:
 * quantify the benefits and costs of togetherness (time spent jointly and together) between spouses;
-* understand how togetherness interacts with other time uses, such as the amount and timing of market work.
+* understand how togetherness interacts with other time uses.
 
-Apart from the purpose of **replicating** the paper, this code may also be useful to researchers who want to operationalise the time use and consumption data in the **LISS** in years 2009-2012. It may also be useful to people who want to use **revealed preferences** to estimate (bounds on) parameters of interest in a variety of settings; our code shows how this can be done in practice. 
+Apart from the purpose of **replicating** the paper, this code may also be useful to researchers who want to operationalise the time use and consumption data in the **LISS** in years 2009-2012. It may also be useful to people who want to use **revealed preferences** to estimate (bounds on) parameters of interest in a variety of settings; our code shows how this can be done in practice through developing and implementing a **mixed integer linear program**. 
 
 The journal website of the paper is: TBD when cleared for publication.
 
