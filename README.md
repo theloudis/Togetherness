@@ -67,3 +67,31 @@ The following scripts carry out the revealed preferences analysis:
 * ```togetherness_bounds_main.m``` formulates the mixed integer linear program to recover lower or upper bounds on the average proportion of joint childcare. It writes the revealed preference inequalities and equalities in matrix format, adds an objective function to find the smallest/largest average fraction of joint childcare, and calls ```intlinprog```.
 
 * ```togetherness_bounds_appendix.m``` formulates the mixed integer linear program to recover (a) the minimum variation in the proportion of joint childcare among households consistent with T-CR, and (b) bounds on the average proportion of joint childcare subject to the minimum variation found in (a). It writes the revealed preference inequalities and equalities in matrix format, adds an objective function to minimize variation in joint childcare or to minimize/maximize the average fraction of joint childcare, and finally calls the ```intlinprog``` solver.
+
+## Instructions to users
+
+To run the code, download the replication folder to your computer and update the directories within ```CTV_01_Shell.do``` and ```Run_All.m``` to reflect this folder. Then:
+
+1. Run ```CTV_01_Shell.do```. This will call all other data management & preparation scripts on ```STATA```. To run this script, access to the raw LISS data is needed. Public access to the data is possible after creating an account and signing the appropriate agreement on https://www.dataarchive.lissdata.nl. Without access to the raw data, comment out the call to ```CTV_02_HouseholdBox.do``` and ```CTV_03_YearlyData.do``` within ```CTV_01_Shell.do```, and run the code from ```CTV_04_VarsAndSelection.do``` onward. This requires the assembled data ```panel_all_AEJ_Accepted.dta```, which we provide in the replication package.
+
+2. The last STATA script called by ```CTV_01_Shell.do``` is ```CTV_10_Descriptives.do```. This script will stop with an error as it requires inputs produced in the revealed preferences analysis. As soon as this error occurs, please do not quit ```STATA``` but move on to ```MATLAB``` and run ```Run_All.m```. This calls all other ```MATLAB``` scripts and functions, generating and exporting a number of revealed preferences results, including main text tables 6, 7, 8, 9, and online appendix tables C.1 and D.1. All final exports are saved in folder ```Exports```, while several intermediate files are saved in folder ```Data```. Script ```Run_All.m``` will typically take about half a day to run, depending on the user’s computer specifications.
+ 
+3. As soon as ```Run_All.m``` completes, move back to ```STATA``` and run ```CTV_10_Descriptives.do``` (if the user has quit ```STATA``` in the meantime, they can run ```CTV_01_Shell.do``` again; this will not interfere with the revealed preferences results). ```CTV_10_Descriptives.do``` produces all other tables and figures, namely main text tables 1, 2, 5, online appendix tables A.1-A.2, main text figures 1-9, and online appendix figures C.1 and D.1. Two final tables, appendix tables A.3-A.4, concern the sample of families with children whose parents may or may not participate in the market; these are previously generated in ```CTV_08_Childful_AllWorkNonwork.do```. All tables and figures are saved in folder ```Exports```.
+
+
+**Note**: Users who want to download and use the raw LISS data should additionally do the following prior to steps 1-3 above: 
+
+1. Download the LISS household box in ```STATA``` format covering at least years 2009-2013 and name the file ```RawAllYears_HouseholdBox.dta```. 
+
+2. Download the yearly LISS modules 5, 6, 34 in ```STATA``` format in years 2009, 2010, 2012, name each file ```RawYYYY_X.dta``` where ```YYYY``` is 2009, 2010, 2012 respectively and ```X``` is the module number 5, 6, 34. 
+
+3. Save all files in a folder of their choice and update the path to this folder in ```RAWDATAdir``` at the beginning of ```CTV_01_Shell.do```. 
+
+
+Users who want to download and use the raw LISS time diary data should also do the following: 
+
+4. Repeat steps ```2.``` and ```3.``` for LISS modules 5, 6 in year 2013. 
+
+5. Download the LISS time diary module 122 in ```STATA``` format and save it as ```LISS_TimeUse2013.dta```.
+
+6. Update the path to this file at the top of ```LISS_Time_Diary_Aggregation.R```.
