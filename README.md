@@ -32,3 +32,36 @@ The following files operationalize the LISS consumption and time use data:
 * ```CTV_09_Time_Diary.do``` summarizes the small time diary available in the LISS, formally Time Diary module 122. The script matches the time diary data in 2013 with the yearly survey data in ```2013_AEJ_Accepted.dta```, which we provide as part of the replication package. It implements a sample selection similar to our baseline sample and calculates time diary moments that appear in the discussion in our online appendix A.2. The script uses the processed time diary data in ```Day1_processed.csv```, ```Day2_processed.csv```, and ```Day3_processed.csv```. Processing of the time diary data takes place in ```LISS_Time_Diary_Aggregation.R```, using the raw LISS time diary subject to the rules of accessing the data above. We provide the processed time diary data files as part of the replication package (the ```csv``` files mentioned above), so researchers can skip ```LISS_Time_Diary_Aggregation.R``` (which requires software ```R```) and run ```CTV_09_Time_Diary.do``` seamlessly.
 
 * ```CTV_10_Descriptives.do``` produces most figures and tables in the text, and exports them in folder Exports. This file runs only _after_ the revealed preferences analysis is complete, as I explain further in the instructions subsequently.
+
+
+## Revealed preferences analysis
+
+The following scripts carry out the revealed preferences analysis:
+
+* ```Run_All.m``` calls all other ```MATLAB``` scripts and functions, generating and exporting the revealed preferences results. Results in the paper are based on ```MATLAB 2020a```.
+
+* ```Run_Passrates.m``` computes the pass rates, i.e., the fraction of households and groups consistent with A-CR, CR, and T-CR. Input ```atype``` sets the type of analysis (baseline ```= 0```, with commuting ```= 1```, with overlap ```= 2``` or ```= 3```, with alternative definition of irregular work ```= 4```, with measurement error ```= 5```).
+
+* ```Run_Power.m``` computes the discriminatory power for all groups (```atype``` sets the type of analysis as above). It first simulates 100 random data sets per group of households and then checks consistency of the random data with CR and T-CR.
+
+* ```Run_Value.m``` computes the value of togetherness (```atype``` sets the type of analysis as above).
+
+* ```Run_Shares.m``` computes lower and upper bounds on male resource shares consistent with the revealed preference conditions of T-CR.
+
+* ```Run_Bounds.m``` computes lower and upper bounds on the average proportion of joint childcare.
+
+* ```Run_BoundsAppendix.m``` minimizes variation in the proportion of joint childcare across households in the same group. It then computes lower and upper bounds on the average proportion of joint childcare consistent with this minimal variation. The function finally reports bounds on joint childcare in the households consistent with T-CR as well as naive bounds (between 0 and the smallest of two individual total childcare variables).
+
+* ```Run_Gap.m``` computes the cost of forgone flexibility (the smallest possible wage premium consistent with T-CR) keeping the cost of forgone specialization at zero. It also generates an indicator for who in the household forgoes this flexibility (men or women).
+
+* ```togetherness.m``` formulates the **mixed integer linear program** to test consistency with T-CR. It writes the revealed preference inequalities and equalities in matrix format, and finally calls the ```intlinprog``` solver.
+
+* ```togetherness_measurement.m``` formulates the mixed integer linear program to test consistency with T-CR with measurement error. It writes the revealed preference inequalities and equalities in matrix format, and finally calls the ```intlinprog``` solver.
+
+* ```togetherness_egoistic.m``` formulates the mixed integer linear program to test consistency with a collective model in which all consumption and time use is purely private. It writes the revealed preference inequalities in matrix format and calls ```intlinprog```.
+
+* ```togetherness_sharing.m``` formulates the mixed integer linear program to recover male resource shares consistent with T-CR. It writes the revealed preference inequalities and equalities in matrix format, adds an objective function to find the smallest/largest possible male resource share, and finally calls ```intlinprog```.
+
+* ```togetherness_bounds_main.m``` formulates the mixed integer linear program to recover lower or upper bounds on the average proportion of joint childcare. It writes the revealed preference inequalities and equalities in matrix format, adds an objective function to find the smallest/largest average fraction of joint childcare, and calls ```intlinprog```.
+
+* ```togetherness_bounds_appendix.m``` formulates the mixed integer linear program to recover (a) the minimum variation in the proportion of joint childcare among households consistent with T-CR, and (b) bounds on the average proportion of joint childcare subject to the minimum variation found in (a). It writes the revealed preference inequalities and equalities in matrix format, adds an objective function to minimize variation in joint childcare or to minimize/maximize the average fraction of joint childcare, and finally calls the ```intlinprog``` solver.
