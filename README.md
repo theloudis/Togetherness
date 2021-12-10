@@ -1,4 +1,4 @@
-# Togetherness
+# Togetherness in the Household
 This repository contains the code that allows the replication of my paper **Togetherness in the Household**, accepted at _AEJ-Micro_ conditionally on data replication. The paper is coauthored with [Sam Cosaert](https://www.sites.google.com/site/samlcosaert/home) and Bertrand Verheyden.
 
 **Togetherness in the Household** develops a collective household model with private and joint uses of time. In this model, the _timing_ of a family member's market work matters for how much time the members can spend jointly and together with one another (what we call _togetherness_). The paper uses time use and consumption data in the Dutch [Longitudinal Internet studies for the Social Sciences](https://www.lissdata.nl/Home) (LISS) to:
