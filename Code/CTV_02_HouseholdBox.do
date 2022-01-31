@@ -22,7 +22,54 @@ set more off
 version 16.1
 
 *	Use data:
-use "$RAWDATAdir/RawAllYears_HouseholdBox.dta", clear
+use "$RAWDATAdir/avars_200711_EN_3.0p.dta", clear
+append using "$RAWDATAdir/avars_200712_EN_2.0p.dta"
+forvalues y = 2008/2008 {
+	forvalues m = 1/1 {
+		append using "$RAWDATAdir/avars_`y'0`m'_EN_2.0p.dta"
+	}
+	forvalues m = 2/2 {
+		append using "$RAWDATAdir/avars_`y'0`m'_EN_3.0p.dta"
+	}
+		forvalues m = 3/9 {
+		append using "$RAWDATAdir/avars_`y'0`m'_EN_2.0p.dta"
+	}
+	forvalues m = 10/12 {
+		append using "$RAWDATAdir/avars_`y'`m'_EN_2.0p.dta"
+	}
+}
+forvalues y = 2009/2011 {
+	forvalues m = 1/9 {
+		append using "$RAWDATAdir/avars_`y'0`m'_EN_2.0p.dta"
+	}
+	forvalues m = 10/12 {
+		append using "$RAWDATAdir/avars_`y'`m'_EN_2.0p.dta"
+	}
+}
+forvalues y = 2012/2012 {
+	forvalues m = 1/8 {
+		append using "$RAWDATAdir/avars_`y'0`m'_EN_2.0p.dta"
+	}
+	forvalues m = 9/9 {
+		append using "$RAWDATAdir/avars_`y'0`m'_EN_1.0p.dta"
+	}
+	forvalues m = 10/12 {
+		append using "$RAWDATAdir/avars_`y'`m'_EN_1.0p.dta"
+	}
+}
+forvalues y = 2013/2016 {
+	forvalues m = 1/9 {
+		append using "$RAWDATAdir/avars_`y'0`m'_EN_1.0p.dta"
+	}
+	forvalues m = 10/12 {
+		append using "$RAWDATAdir/avars_`y'`m'_EN_1.0p.dta"
+	}
+}
+forvalues y = 2017/2017 {
+	forvalues m = 1/6 {
+		append using "$RAWDATAdir/avars_`y'0`m'_EN_1.0p.dta"
+	}
+}
 sort nomem_encr wave
 
 *	Select variables:

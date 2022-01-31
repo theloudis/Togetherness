@@ -163,7 +163,7 @@ local education_med = r(p50)
 qui sum educH_cont, de
 local educH_med = r(p50)
 di `education_med'/`educH_med'
-label list OPLMET
+*label list OPLMET
 drop p33* p67* age education
 
 *	Define group identifier and children variable and save:
