@@ -183,26 +183,22 @@ The content of these files is as follows:
 
 To run the code, download the replication folder to your computer and update the directories within ```CTV_01_Shell.do``` and ```Run_All.m``` to reflect this folder. Then:
 
-1. Run ```CTV_01_Shell.do```. This will call all other data management & preparation scripts on ```STATA```. To run this script, access to the raw LISS data is needed. Public access to the data is possible after creating an account and signing the appropriate agreement on https://www.dataarchive.lissdata.nl. Without access to the raw data, comment out the call to ```CTV_02_HouseholdBox.do``` and ```CTV_03_YearlyData.do``` within ```CTV_01_Shell.do```, and run the code from ```CTV_04_VarsAndSelection.do``` onward. This requires the assembled data ```panel_all_AEJ_Accepted.dta```, which we provide in the replication package.
+1. Run ```CTV_01_Shell.do```. This will call all other data management & preparation scripts on ```STATA```. To run this script, users need access to the raw LISS data listed in section 1 above. Public access to the data is possible after creating an account and signing the appropriate statement on [www.dataarchive.lissdata.nl](https://www.dataarchive.lissdata.nl). Without access to the raw data, comment out the call to ```CTV_02_HouseholdBox.do``` and ```CTV_03_YearlyData.do``` within ```CTV_01_Shell.do```, and run the code from ```CTV_04_VarsAndSelection.do``` onward. This requires the assembled data ```panel_all_AEJ_Accepted.dta```, which we provide in the replication package. Users who want to use the raw LISS data should do the following: (1.) download all files mentioned in section 1 of this note; (2.) rename certain files as follows, and (3.) save all files in a folder of their choice and update the path to this folder in ```RAWDATAdir``` at the beginning of ```CTV_01_Shell.do```. Users who want to also use the raw LISS time diary mentioned in the online appendix should additionally do the following: (4.) open ```ht13a_NL_2.0p.dta``` and export it in ```csv``` format with name ```LISS_TimeUse2013.csv;``` (5.) update the path to this file at the top of ```LISS_Time_Diary_Aggregation.R```.
+```
+**old name**              **new name**
+cf09b_EN_2.2p.dta         Raw2009_5.dta
+cf10c_EN_1.0p.dta         Raw2010_5.dta
+cf12e_EN_2.1p.dta         Raw2012_5.dta
+cf13f_EN_1.1p.dta         Raw2013_5.dta
+cw09b_EN_3.0p.dta         Raw2009_6.dta
+cw10c_EN_1.0p.dta         Raw2010_6.dta
+cw12e_EN_1.0p.dta         Raw2012_6.dta
+cw13f_EN_1.0p.dta         Raw2013_6.dta
+bf09a_EN_1.0p.dta         Raw2009_34.dta
+bf10b_EN_1.1p.dta         Raw2010_34.dta
+bf12c_EN_1.0p.dta         Raw2012_34.dta
+```
 
 2. The last STATA script called by ```CTV_01_Shell.do``` is ```CTV_10_Descriptives.do```. This script will stop with an error as it requires inputs produced in the revealed preferences analysis. As soon as this error occurs, please do not quit ```STATA``` but move on to ```MATLAB``` and run ```Run_All.m```. This calls all other ```MATLAB``` scripts and functions, generating and exporting a number of revealed preferences results, including main text tables 6, 7, 8, 9, and online appendix tables C.1 and D.1. All final exports are saved in folder ```Exports```, while several intermediate files are saved in folder ```Data```. Script ```Run_All.m``` will typically take about half a day to run, depending on the user’s computer specifications.
  
 3. As soon as ```Run_All.m``` completes, move back to ```STATA``` and run ```CTV_10_Descriptives.do``` (if the user has quit ```STATA``` in the meantime, they can run ```CTV_01_Shell.do``` again; this will not interfere with the revealed preferences results). ```CTV_10_Descriptives.do``` produces all other tables and figures, namely main text tables 1, 2, 5, online appendix tables A.1-A.2, main text figures 1-9, and online appendix figures C.1 and D.1. Two final tables, appendix tables A.3-A.4, concern the sample of families with children whose parents may or may not participate in the market; these are previously generated in ```CTV_08_Childful_AllWorkNonwork.do```. All tables and figures are saved in folder ```Exports```.
-
-
-**Note**: Users who want to download and use the raw LISS data should additionally do the following prior to steps 1-3 above: 
-
-1. Download the LISS household box in ```STATA``` format covering at least years 2009-2013 and name the file ```RawAllYears_HouseholdBox.dta```. 
-
-2. Download the yearly LISS modules 5, 6, 34 in ```STATA``` format in years 2009, 2010, 2012, name each file ```RawYYYY_X.dta``` where ```YYYY``` is 2009, 2010, 2012 respectively and ```X``` is the module number 5, 6, 34. 
-
-3. Save all files in a folder of their choice and update the path to this folder in ```RAWDATAdir``` at the beginning of ```CTV_01_Shell.do```. 
-
-
-Users who want to download and use the raw LISS time diary data should also do the following: 
-
-4. Repeat steps ```2.``` and ```3.``` for LISS modules 5, 6 in year 2013. 
-
-5. Download the LISS time diary module 122 in ```STATA``` format and save it as ```LISS_TimeUse2013.dta```.
-
-6. Update the path to this file at the top of ```LISS_Time_Diary_Aggregation.R```.
